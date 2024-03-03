@@ -210,8 +210,6 @@ int main0()
 	Set<int>& s4 = s1.Inter(s2);
 	s4.printall();
 	cout << "s1 s2的差集：";
-//i然后加入果壳
-
 	Set<int>& s5 = s1.Differ(s2);
 	s5.printall();
 	cout << s5[2] << endl;
