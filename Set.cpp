@@ -44,7 +44,7 @@ template<class T>
 T Set<T>::get(int i)
 {
 	if (i < 0 || i >= length)
-		cout << "²ÎÊıi´íÎó" << endl;
+		cout << "å‚æ•°ié”™è¯¯" << endl;
 	return data[i];
 }
 
@@ -70,12 +70,12 @@ void Set<T>::add(T e)
 			length++;
 		}
 		else
-			cout << "¼¯ºÏÒÑÂú" << endl;
+			cout << "é›†åˆå·²æ»¡" << endl;
 
 	}
 	else
 	{
-		cout << "ÒÑÓĞ¸ÃÔªËØ" << endl;
+		cout << "å·²æœ‰è¯¥å…ƒç´ " << endl;
 	}
 }
 
@@ -83,7 +83,7 @@ template<class T>
 void Set<T>::deletem(T e)
 {
 	if (!IsIn(e))
-		cout << "¼¯ºÏÖĞÃ»ÓĞ¸ÃÔªËØ" << endl;
+		cout << "é›†åˆä¸­æ²¡æœ‰è¯¥å…ƒç´ " << endl;
 	else
 	{
 		for(int i=0;i<length;i++)
@@ -123,7 +123,7 @@ Set<T>& Set<T>::Union(Set& s2)
 	for (int i = 0; i < s2.length; i++)
 		s3.add(s2.data[i]);
 	return s3;
-	// TODO: ÔÚ´Ë´¦²åÈë return Óï¾ä
+	// TODO: åœ¨æ­¤å¤„æ’å…¥ return è¯­å¥
 }
 
 template<class T>
@@ -134,7 +134,7 @@ Set<T>& Set<T>::Inter(Set& s2)
 		if (IsIn(s2.data[i]))
 			s3.add(s2.data[i]);
 	return s3;
-	// TODO: ÔÚ´Ë´¦²åÈë return Óï¾ä
+	// TODO: åœ¨æ­¤å¤„æ’å…¥ return è¯­å¥
 }
 
 template<class T>
@@ -145,7 +145,7 @@ Set<T>& Set<T>::Differ(Set& s2)
 		if (!s2.IsIn(data[i]))
 			s3.add(data[i]);
 	return s3;
-	// TODO: ÔÚ´Ë´¦²åÈë return Óï¾ä
+	// TODO: åœ¨æ­¤å¤„æ’å…¥ return è¯­å¥
 }
 
 template<class T>
@@ -153,7 +153,7 @@ T& Set<T>::operator[](int n)
 {
 	if (n >= 0 && n < length)
 		return data[n];
-	// TODO: ÔÚ´Ë´¦²åÈë return Óï¾ä
+	// TODO: åœ¨æ­¤å¤„æ’å…¥ return è¯­å¥
 }
 
 template<class T>
@@ -174,7 +174,7 @@ void DifferNum(string filename)
 		cin >> val;
 		s.add(val);
 	}
-	cout << "²»Í¬ÕûÊıµÄ¸öÊıÎª" << s.getlength() << endl;
+	cout << "ä¸åŒæ•´æ•°çš„ä¸ªæ•°ä¸º" << s.getlength() << endl;
 }
 
 
@@ -195,22 +195,22 @@ int main0()
 	s1.add(2);
 	s1.add(6);
 	s1.add(8);
-	cout << "¼¯ºÏs1:"; s1.printall();
-	cout << "s1µÄ³¤¶ÈÊÇ" << s1.getlength()<<endl;
+	cout << "é›†åˆs1:"; s1.printall();
+	cout << "s1çš„é•¿åº¦æ˜¯" << s1.getlength()<<endl;
 	s2.add(2);
 	s2.add(5);
 	s2.add(3);
 	s2.add(6);
-	cout << "¼¯ºÏs2:"; s2.printall();
-	cout << "s2µÄ³¤¶ÈÊÇ" << s2.getlength()<<endl;
-	cout << "s1 s2µÄ²¢¼¯£º";
+	cout << "é›†åˆs2:"; s2.printall();
+	cout << "s2çš„é•¿åº¦æ˜¯" << s2.getlength()<<endl;
+	cout << "s1 s2çš„å¹¶é›†ï¼š";
 	Set<int>& s3 = s1.Union(s2);
 	s3.printall();
-	cout << "s1 s2µÄ½»¼¯£º";
+	cout << "s1 s2çš„äº¤é›†ï¼š";
 	Set<int>& s4 = s1.Inter(s2);
 	s4.printall();
-	cout << "s1 s2µÄ²î¼¯£º";
-
+	cout << "s1 s2çš„å·®é›†ï¼š";
+//iç„¶ååŠ å…¥æœå£³
 
 	Set<int>& s5 = s1.Differ(s2);
 	s5.printall();
