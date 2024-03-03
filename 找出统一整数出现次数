@@ -1,0 +1,125 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+//int fun(int n) {
+//	int i, j,k= 0;
+//	int s = 0;
+//	for (i = 1; i <= n; i = i * 3){
+//		for (j = i / 3; j <= i; j++)//I=1  1 I=3  3  I=9  7 I=27 19  j： 2*3^(m-1)+1次*i:n/3
+//		{
+//			s = s + j;
+//			k++;
+//
+//		}
+//	}
+//	return k;
+//}
+const int MaxSize = 100;
+template <class T>
+class Set {
+	T* data;
+	int length;
+public:
+	Set() {
+		data = new T[MaxSize]; length = 0;
+	}
+	~Set() {
+		delete[] data;
+	}
+	int getlength() {
+		return length;
+	}
+	int get(int i) {
+		if (i<0|| i >= length)
+		throw "参数i错误"; 
+		return data[i];
+	}
+	bool IsIn(T e) {
+		for (int i = 0; i < length; i++)
+			if (data[i] == e)
+				return true;
+		return false;
+	}
+	void add(T e) {
+		if (!IsIn(e)) {
+			data[length] = e; length++;
+		}
+	}
+	void deletem(T e) {
+		int i = 0; 
+			while (i < length && data[i] != e)
+				i++; 
+			if (i >= length)
+				return;
+			for (int j = i + 1; j < length; i++)
+				data[j - 1] = data[j];
+				length--;
+	}
+	Set& Copy() {
+		static Set s1;
+		for (int i = 0; i < length; i++)
+			s1.data[i] = data[i];
+		s1.length = length;
+		return s1;
+	}
+	void display() {
+		for (int i = 0; i < length - 1; i++)
+			printf(" % d ", data[i]);
+		    printf("% d\n", data [length - 1] );
+	}
+	Set& Union(Set& s2) {
+		Set& s3 = Copy(); 
+		for (int i = 0; i < s2.getlength(); i++)//将s2中不在s1中的元素添加到s3中
+		{
+			int e = s2.get(i);
+			if (!IsIn(e)) s3.add(e);
+
+			}
+		return  s3; 
+	}
+	Set& Inter(Set& s2) {
+		static Set s3;
+		for (int i =0; i < length;i++) {
+			int e = data[i];
+			if (s2.IsIn(e)) s3.add(e);
+	}
+		return s3;
+	}
+	Set& Diff(Set& s2) {
+		static Set s3;
+		for (int i = 0; i < length; i++) {
+			int e = data[i];
+			if (!s2.IsIn(e)) s3.add(e);
+		}
+		return s3;
+	}
+
+};//删除只删除一次，add只能加入没有的元素
+int main() {
+	Set<int> a1, a2;
+	int* p = new int[100];
+	ifstream inFile;
+	inFile.open("C:\\Users\\Lenovo\\Desktop\\in.txt", ios::app);
+	string m;
+	if (!inFile.is_open()) {	// 判断文件是否打开失败
+		cout << "文件打开失败！" << endl;
+		system("pause");
+		exit(-1);
+	}
+	int i = 0,mm=0,k=0;
+	while (getline(inFile, m))
+	{
+		a1.add(atoi(m.c_str()));
+		p[i] = atoi(m.c_str());
+		i++;
+	}
+	while (k<a1.getlength() ){
+		for(int j=0;j<i;j++)
+		if (p[j] == a1.get(k))
+			mm++;
+		cout << a1.get(k) <<mm<<'\n';
+		k++; mm = 0;
+		
+	}
+}
