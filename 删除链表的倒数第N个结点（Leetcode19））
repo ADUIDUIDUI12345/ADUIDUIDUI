@@ -1,0 +1,25 @@
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* p = head;
+        ListNode* m = head;
+        ListNode* h = new ListNode(0, head);
+        int len = -1, i = 1;
+        while (p != nullptr) { // 倒数第n个
+            p = p->next;
+            len++;
+        }
+        m=h;
+        while (i < len - n + 2 && m != nullptr) { // 指向倒数第n-1个
+            m = m->next;
+            i++;
+        }
+        m->next = m->next->next;
+        ListNode* q=h->next;
+        delete h;
+        return q;
+    }
+};
+//1、遍历得长度
+//2、根据长度删除
+//注意！leetcode中都是有效头结点，不是课本里的虚拟头结点，head里有值！
